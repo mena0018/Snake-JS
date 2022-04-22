@@ -21,12 +21,14 @@ let snake = [
 function animation() {
   setTimeout(function () {
     nettoieCanvas();
+    dessinePomme();
     faireAvancerSerpent();
     dessineLeSerpent();
     animation();
   }, 100);
 }
 animation();
+creerPomme();
 
 
 function nettoieCanvas() {
@@ -104,4 +106,11 @@ function creerPomme() {
     })
 }
 
-creerPomme();
+function dessinePomme() {
+    ctx.fillStyle = "red";
+    ctx.strokeStyle = "darkred";
+    ctx.beginPath();
+    ctx.arc(pommeX + 5, pommeY + 5, 5, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.stroke();
+}
