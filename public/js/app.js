@@ -58,3 +58,23 @@ function faireAvancerSerpent() {
 }
 dessineLeSerpent();
 
+
+document.addEventListener("keydown", changerDirection);
+
+function changerDirection(event) {
+    const FLECHE_GAUCHE = 37;
+    const FLECHE_DROITE = 39;
+    const FLECHE_ENHAUT = 38;
+    const FLECHE_ENBAS = 40;
+
+    const monter    = vy === -10;
+    const descendre = vy ===  10;
+    const adroite   = vx ===  10;
+    const agauche   = vx === -10;
+
+    // Si on veut aller dans une direction, on interdis le retour du serpent sur soi même
+    if(event.keyCode === FLECHE_DROITE && !agauche)   { vx = 10; vy = 0; }
+    if(event.keyCode === FLECHE_GAUCHE && !adroite)   { vx = -10; vy = 0; }
+    if(event.keyCode === FLECHE_ENHAUT && !descendre) { vx = 0; vy = -10; }
+    if(event.keyCode === FLECHE_ENBAS  && !monter)    { vx = 0; vy = 10; }
+}
