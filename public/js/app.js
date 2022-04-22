@@ -60,7 +60,14 @@ function faireAvancerSerpent() {
     y: snake[0].y + vy,
   };
   snake.unshift(head);
-  snake.pop();
+  
+  const serpentMangePomme = snake[0].x === pommeX && snake[0].y === pommeY;
+
+  if (serpentMangePomme) {
+    creerPomme();
+  } else {
+      snake.pop();
+  }
 }
 dessineLeSerpent();
 
