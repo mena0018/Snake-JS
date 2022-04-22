@@ -1,11 +1,15 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-// Vitesse sur X
+// Vitesse sur X (en px)
 vx = 10;
 
-// Vitesse sur Y
+// Vitesse sur Y (en px)
 vy = -0;
+
+// Coordonnées de la pomme
+let pommeX = 0;
+let pommeY = 0;
 
 let snake = [
   { x: 140, y: 150 },
@@ -78,3 +82,16 @@ function changerDirection(event) {
     if(event.keyCode === FLECHE_ENHAUT && !descendre) { vx = 0; vy = -10; }
     if(event.keyCode === FLECHE_ENBAS  && !monter)    { vx = 0; vy = 10; }
 }
+
+
+// Génère un nombre aléatoire entre 0 et 290.
+// On fait x10 pour avoir un multiple de 10 de sorte à pouvoir le placer sur le canvas.
+function nbAleatoire() {
+    return Math.round((Math.random() * 290) / 10) * 10;
+}
+
+function creerPomme() {
+    pommeX = nbAleatoire();
+    pommeY = nbAleatoire();
+}
+creerPomme()
