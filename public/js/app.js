@@ -12,6 +12,7 @@ let pommeX = 0;
 let pommeY = 0;
 
 let score = 0;
+let bugDirection = false;
 
 let snake = [
   { x: 140, y: 150 },
@@ -24,11 +25,13 @@ let snake = [
 function animation() {
 
   setTimeout(function () {
+    bugDirection = false;
     nettoieCanvas();
     dessinePomme();
     faireAvancerSerpent();
 
     if(finDuJeu()){
+        recommencer();
         return;
     }
 
@@ -87,6 +90,10 @@ dessineLeSerpent();
 document.addEventListener("keydown", changerDirection);
 
 function changerDirection(event) {
+
+    // Eviter le gameOver lors du changement très rapide de direction
+    if (bugDirection) return;
+    bugDirection = true;
 
     const FLECHE_GAUCHE = 37;
     const FLECHE_DROITE = 39;
@@ -160,4 +167,16 @@ function finDuJeu() {
     }
 
     return gameOver;
+}
+
+
+function recommencer() {
+    const restart = document.getElementById("recommencer");
+    restart.style.opacity = 1;
+
+    document.addEventListener('keydown', (e) => {
+        if (e.keyCode === 32) {
+            document.location.reload(true);
+        }
+    })
 }

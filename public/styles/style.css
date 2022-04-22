@@ -7,15 +7,22 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #canvas {
-    margin-top: 50px;
     border-radius: 5px;
 }
 
 #score {
-    margin-top: 200px;
+    margin: 100px 0;
     font-size: 50px;
     color: #ececec;
+}
+
+#recommencer {
+    margin-top: 50px;
+    color: #ececec;
+    font-size: 30px;
+    opacity: 0;
 }
