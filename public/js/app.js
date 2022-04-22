@@ -93,5 +93,15 @@ function nbAleatoire() {
 function creerPomme() {
     pommeX = nbAleatoire();
     pommeY = nbAleatoire();
+
+    // Si une partie du serpent est sur la pomme alors serpentSurPomme === true
+    snake.forEach(function(partie) {
+        const serpentSurPomme = partie.x === pommeX && partie.y === pommeY;
+
+        if(serpentSurPomme) {
+            creerPomme();
+        }
+    })
 }
-creerPomme()
+
+creerPomme();
