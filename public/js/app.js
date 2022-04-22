@@ -20,11 +20,17 @@ let snake = [
   { x: 110, y: 150 },
 ];
 
+
 function animation() {
   setTimeout(function () {
     nettoieCanvas();
     dessinePomme();
     faireAvancerSerpent();
+
+    if(finDuJeu()){
+        return;
+    }
+
     dessineLeSerpent();
     animation();
   }, 100);
@@ -103,6 +109,7 @@ function nbAleatoire() {
     return Math.round((Math.random() * 290) / 10) * 10;
 }
 
+
 function creerPomme() {
     pommeX = nbAleatoire();
     pommeY = nbAleatoire();
@@ -117,6 +124,7 @@ function creerPomme() {
     })
 }
 
+
 function dessinePomme() {
     ctx.fillStyle = "red";
     ctx.strokeStyle = "darkred";
@@ -124,4 +132,18 @@ function dessinePomme() {
     ctx.arc(pommeX + 5, pommeY + 5, 5, 0, 2 * Math.PI);
     ctx.fill();
     ctx.stroke();
+}
+
+
+function finDuJeu() {
+    let snakeSansTete = snake.slice(1, -1);
+    let mordu = false;
+
+    snakeSansTete.forEach(morceau => {
+        if(morceau.x === snake[0].x && morceau.y === snake[0].y){
+            mordu = true;
+        }
+    })
+
+    return mordu;
 }
