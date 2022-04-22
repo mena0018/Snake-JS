@@ -22,6 +22,7 @@ let snake = [
 
 
 function animation() {
+
   setTimeout(function () {
     nettoieCanvas();
     dessinePomme();
@@ -35,6 +36,7 @@ function animation() {
     animation();
   }, 100);
 }
+
 animation();
 creerPomme();
 
@@ -85,6 +87,7 @@ dessineLeSerpent();
 document.addEventListener("keydown", changerDirection);
 
 function changerDirection(event) {
+
     const FLECHE_GAUCHE = 37;
     const FLECHE_DROITE = 39;
     const FLECHE_ENHAUT = 38;
@@ -145,5 +148,16 @@ function finDuJeu() {
         }
     })
 
-    return mordu;
+    const toucheMurGauche = snake[0].x < -1;
+    const toucheMurDroite = snake[0].x > canvas.width - 10;
+    const toucheMurTop    = snake[0].y < - 1;
+    const toucheMurBottom = snake[0].y > canvas.height - 10;
+
+    let gameOver = false;
+
+    if (mordu || toucheMurBottom || toucheMurDroite || toucheMurGauche || toucheMurTop) {
+        gameOver = true;
+    }
+
+    return gameOver;
 }
